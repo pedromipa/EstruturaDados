@@ -55,6 +55,10 @@ int main(){
   imprimePilha(&pilha);
   printf("\nTamanho da pilha: %i\n",tamanhoPilha(&pilha));
 
-  desempilha(ob,)
+  desempilha(&ob, &pilha);
+
+  imprimePilha(&pilha);
+  printf("\nTamanho da pilha: %i\n",tamanhoPilha(&pilha));
+
   return 0;
 }
