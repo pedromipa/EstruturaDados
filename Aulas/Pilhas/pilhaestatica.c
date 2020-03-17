@@ -1,4 +1,4 @@
-#include "pilhaEstatica.h"
+#include "pilhaestatica.h"
 
 void iniciaPilha(pilhaEstatica *pilha) {
   pilha->topo = -1;
