@@ -22,6 +22,10 @@ void empilha(Objeto item, pilhaEstatica *pilha) {
 }
 
 void desempilha(Objeto *item, pilhaEstatica *pilha) {
+  if(estaVazia(pilha)){
+    printf("A pilha ja esta vazia\n");
+    return;
+  }
   *item = pilha->array[pilha->topo];
   pilha->topo --;
 }
@@ -60,5 +64,6 @@ int main(){
   imprimePilha(&pilha);
   printf("\nTamanho da pilha: %i\n",tamanhoPilha(&pilha));
 
+  printf("Valor no topo: %i\n",pilha.array[pilha.topo]);
   return 0;
 }
