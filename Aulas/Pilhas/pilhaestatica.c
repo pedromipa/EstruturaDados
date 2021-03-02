@@ -31,7 +31,7 @@ void desempilha(Objeto *item, pilhaEstatica *pilha) {
 }
 
 int tamanhoPilha(pilhaEstatica *pilha) {
-  return (pilha->topo+1);
+  return (pilha->topo);//???? pilha->topo+1?????
 }
 
 Objeto topo(pilhaEstatica *pilha) {

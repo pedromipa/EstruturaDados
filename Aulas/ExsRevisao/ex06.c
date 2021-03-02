@@ -1,3 +1,5 @@
+/* OBS: ex nao terminado */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
