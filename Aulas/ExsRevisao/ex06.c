@@ -11,7 +11,7 @@ typedef struct {
   bool foiJogada;
 }Carta;
 
-typedef struct {
+typedef struct {.
   Carta carta[52];
 }Baralho;
 Baralho baralho;
