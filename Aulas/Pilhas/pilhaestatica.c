@@ -1,7 +1,7 @@
 #include "pilhaestatica.h"
 
 void iniciaPilha(pilhaEstatica *pilha) {
-  pilha->topo = -1;
+  pilha->topo = -1;//?
 }
 
 bool estaVazia(pilhaEstatica *pilha) {
@@ -31,7 +31,7 @@ void desempilha(Objeto *item, pilhaEstatica *pilha) {
 }
 
 int tamanhoPilha(pilhaEstatica *pilha) {
-  return (pilha->topo);//???? pilha->topo+1?????
+  return (pilha->topo+1);//?
 }
 
 Objeto topo(pilhaEstatica *pilha) {
