@@ -12,6 +12,7 @@ typedef struct {
 
 typedef struct NoPilha *PtrNoPilha;
 
+// Implementa os nós da pilha
 typedef struct NoPilha{
   Objeto obj;
   PtrNoPilha proximo;
@@ -24,8 +25,8 @@ typedef struct {
 
 void iniciaPilha(PilhaDinamica *p);
 bool estaVazia(PilhaDinamica *p);
-void empilha(Objeto obj, PilhaDinamica *p);
-void desempilha(PilhaDinamica *p, Objeto *obj);
+void empilha(PilhaDinamica *p, Objeto obj);
+int desempilha(PilhaDinamica *p);
 int tamanhoPilha(PilhaDinamica *p);
 void topo(PilhaDinamica *p, Objeto *obj);
 void imprimePilha(PilhaDinamica *p);
