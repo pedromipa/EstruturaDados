@@ -1,24 +1,24 @@
 #include "pilhaestatica.h"
 
 void iniciaPilha(pilhaEstatica *pilha) {
-  pilha->topo = -1;//?
+  pilha->topo = 0;
 }
 
 bool estaVazia(pilhaEstatica *pilha) {
-  return (pilha->topo == -1);
+  return (pilha->topo == 0);
 }
 
 bool estaCheia(pilhaEstatica *pilha) {
-  return (pilha->topo == MAXTAM-1);
+  return (pilha->topo == MAXTAM);
 }
 
 void empilha(Objeto item, pilhaEstatica *pilha) {
-  pilha->topo ++;
   if(estaCheia(pilha)){
     printf("A pilha esta cheia\n");
     return;
   }
   pilha->array[pilha->topo] = item;
+  pilha->topo ++;
 }
 
 void desempilha(Objeto *item, pilhaEstatica *pilha) {
@@ -26,12 +26,12 @@ void desempilha(Objeto *item, pilhaEstatica *pilha) {
     printf("A pilha ja esta vazia\n");
     return;
   }
-  *item = pilha->array[pilha->topo];
   pilha->topo --;
+  *item = pilha->array[pilha->topo];
 }
 
 int tamanhoPilha(pilhaEstatica *pilha) {
-  return (pilha->topo+1);//?
+  return (pilha->topo);
 }
 
 Objeto topo(pilhaEstatica *pilha) {
@@ -39,8 +39,8 @@ Objeto topo(pilhaEstatica *pilha) {
 }
 
 void imprimePilha(pilhaEstatica *pilha) {
-  for (int i=0; i <= pilha->topo ; i++) {
-    printf("%i  ", pilha->array[i].chave);
+  for (int i=0; i < pilha->topo ; i++) {
+    printf("%i  ", pilha->array[i]);
   }
 }
 
@@ -58,12 +58,13 @@ int main(){
 
   imprimePilha(&pilha);
   printf("\nTamanho da pilha: %i\n",tamanhoPilha(&pilha));
+  printf("Valor no topo: %i\n",pilha.array[pilha.topo-1]);
 
   desempilha(&ob, &pilha);
 
   imprimePilha(&pilha);
   printf("\nTamanho da pilha: %i\n",tamanhoPilha(&pilha));
+  printf("Valor no topo: %i\n",pilha.array[pilha.topo-1]);
 
-  printf("Valor no topo: %i\n",pilha.array[pilha.topo]);
   return 0;
 }
