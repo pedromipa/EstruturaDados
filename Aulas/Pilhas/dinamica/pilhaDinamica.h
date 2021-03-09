@@ -5,12 +5,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <time.h>
 
 typedef struct {
     int chave;
 } Objeto;
 
-typedef struct NoPilha *PtrNoPilha;
+typedef struct NoPilha* PtrNoPilha;
 
 // Implementa os nós da pilha
 typedef struct NoPilha{
@@ -26,7 +27,7 @@ typedef struct {
 void iniciaPilha(PilhaDinamica *p);
 bool estaVazia(PilhaDinamica *p);
 void empilha(PilhaDinamica *p, Objeto *obj);
-int desempilha(PilhaDinamica *p);
+int desempilha(PilhaDinamica *p, Objeto *obj);
 int tamanhoPilha(PilhaDinamica *p);
 void topo(PilhaDinamica *p, Objeto *obj);
 void imprimePilha(PilhaDinamica *p);

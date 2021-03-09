@@ -1,5 +1,4 @@
-#include "pilhaDinamica.h"
-#include <time.h>
+#include "pilhadinamica.h"
 
 void iniciaPilha(PilhaDinamica *p) {
   p->topo = NULL;
@@ -31,11 +30,12 @@ void empilha(PilhaDinamica *p, Objeto *obj) {
   //Quinto passo
   p->tamanho ++;
 } // void empilha
-/*
-int desempilha(PilhaDinamica *p){
+
+
+int desempilha(PilhaDinamica *p, Objeto *obj){
   // Passo zero
   // Valor para retorno
-  int v = -99;
+  int valor = -99;
 
   if(!estaVazia(p)){
     // Primeiro passo
@@ -43,7 +43,7 @@ int desempilha(PilhaDinamica *p){
     // Segundo passo
     aux = p->topo;
     // Terceiro Passo
-    v = aux->obj;
+    valor = aux->obj.chave;
     // Quarto passo
     p->topo = aux->proximo; //p->topo = p->topo->prox
     // Quinto passo
@@ -60,17 +60,19 @@ int desempilha(PilhaDinamica *p){
   // Sétimo Passo
     // retornar o valor da pilha
 
-  return(v);
+  return(valor);
 
 }// void desempilha
-*/
+
+
 void imprimePilha(PilhaDinamica *p){
   PtrNoPilha ptr;
 
+  printf("\nPilha: ");
   for (ptr = p->topo; ptr !=NULL; ptr = ptr->proximo) {
     printf("%d ", ptr->obj);
   }//for
-
+  printf("\n");
 }
 
 /*
@@ -103,12 +105,12 @@ int main(){
     imprimePilha(&pilha);
     printf("Tamanho = %d\n", tamanhoPilha(&pilha));
 
-  int x = desempilha(&pilha);
+  int x = desempilha(&pilha, &obj);
     printf("Valor removido = %d\n", x);
     imprimePilha(&pilha);
     printf("Tamanho = %d\n", tamanhoPilha(&pilha));
 
-  x = desempilha(&pilha);
+  x = desempilha(&pilha, &obj);
     printf("Valor removido = %d\n", x);
     imprimePilha(&pilha);
     printf("Tamanho = %d\n", tamanhoPilha(&pilha));
