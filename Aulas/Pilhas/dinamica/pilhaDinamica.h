@@ -25,7 +25,7 @@ typedef struct {
 
 void iniciaPilha(PilhaDinamica *p);
 bool estaVazia(PilhaDinamica *p);
-void empilha(PilhaDinamica *p, Objeto obj);
+void empilha(PilhaDinamica *p, Objeto *obj);
 int desempilha(PilhaDinamica *p);
 int tamanhoPilha(PilhaDinamica *p);
 void topo(PilhaDinamica *p, Objeto *obj);

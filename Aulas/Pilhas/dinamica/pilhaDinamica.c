@@ -14,14 +14,14 @@ bool estaVazia(PilhaDinamica *p) {
   return (p->tamanho == 0);
 }
 
-void empilha(PilhaDinamica *p, Objeto obj) {
+void empilha(PilhaDinamica *p, Objeto *obj) {
   // Primeiro passo
     // Nó de pilha aux
   PtrNoPilha aux;
   aux = (PtrNoPilha) malloc(sizeof(NoPilha));
   // Segundo passo
     // Aux recebe o conteúdo do topo
-  aux->obj = obj;
+  aux->obj = *obj;
   // Terceiro passo
    // Aux aponta para o nó do topo atual
   aux->proximo = p->topo; //novo proximo
@@ -31,7 +31,7 @@ void empilha(PilhaDinamica *p, Objeto obj) {
   //Quinto passo
   p->tamanho ++;
 } // void empilha
-
+/*
 int desempilha(PilhaDinamica *p){
   // Passo zero
   // Valor para retorno
@@ -63,12 +63,12 @@ int desempilha(PilhaDinamica *p){
   return(v);
 
 }// void desempilha
-
+*/
 void imprimePilha(PilhaDinamica *p){
   PtrNoPilha ptr;
 
-  for (ptr = p->topo; ptr !NULL; ptr = ptr->proximo) {
-    printf("%d ", ptr->valor);
+  for (ptr = p->topo; ptr !=NULL; ptr = ptr->proximo) {
+    printf("%d ", ptr->obj);
   }//for
 
 }
@@ -88,17 +88,17 @@ int main(){
   imprimePilha(&pilha);
     printf("tamanho = %d\n", tamanhoPilha(&pilha));
 
-  obj.chave = 10
-  empilha(&pilha, &obj);
-    imprime(&pilha);
-    printf("Tamanho = %d\n", tamanhoPilha(&pilha));
-
-  obj.chave = 4
+  obj.chave = 10;
   empilha(&pilha, &obj);
     imprimePilha(&pilha);
     printf("Tamanho = %d\n", tamanhoPilha(&pilha));
 
-  obj.chave = 300
+  obj.chave = 4;
+  empilha(&pilha, &obj);
+    imprimePilha(&pilha);
+    printf("Tamanho = %d\n", tamanhoPilha(&pilha));
+
+  obj.chave = 300;
   empilha(&pilha, &obj);
     imprimePilha(&pilha);
     printf("Tamanho = %d\n", tamanhoPilha(&pilha));
