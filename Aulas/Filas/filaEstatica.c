@@ -53,7 +53,7 @@ void enfileira(FilaEstatica *fila, int x){
 }//enfileira
 
 int tamanhoFila(FilaEstatica *fila){
-
+  return(fila->tamanho);
 }//tamanhoFila
 
 void imprimeFila(FilaEstatica *fila){
@@ -101,6 +101,8 @@ int main(){
   iniciaFila(&fila);
     imprimeFila(&fila);
 
+  printf("Tamanho da fila: %d\n", tamanhoFila(&fila));
+
   enfileira(&fila, 10);
   enfileira(&fila, 230);
   enfileira(&fila, 123);
@@ -115,8 +117,9 @@ int main(){
   enfileira(&fila, 5);
     imprimeFila(&fila);
 
-    printf("Objeto no inicio: %d\n", inicioFila(&fila));
-    printf("Objeto no fim: %d\n", fimFila(&fila));
+  printf("Objeto no inicio: %d\n", inicioFila(&fila));
+  printf("Objeto no fim: %d\n", fimFila(&fila));
+  printf("Tamanho da fila: %d\n", tamanhoFila(&fila));
 
   return 0;
 }
