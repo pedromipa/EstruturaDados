@@ -60,7 +60,6 @@ void enfileira(FilaDinamica *fila, int x){
 void imprimeFila(FilaDinamica *fila){
   printf("Fila = { ");
   PtrNoFila aux;
-  int n = fila->tamanho;
 
   for (aux = fila->inicio; aux!=NULL; aux = aux->proximo) {
     printf("%d ", aux->x);
@@ -87,15 +86,18 @@ int desenfileira(FilaDinamica *fila){
   return(temp);
 }//desenfileira
 
-// int inicioFila(FilaDinamica *fila){
-//   return(fila->array[fila->inicio].chave);
-// }//inicioFila
+int inicioFila(FilaDinamica *fila){
+  PtrNoFila aux;
+  aux=fila->inicio;
+  return(aux->x);
+}//inicioFila
 
 
-// int fimFila(FilaDinamica *fila){
-//   return(fila->array[fila->fim].chave);
-//
-// }//fimFila
+int fimFila(FilaDinamica *fila){
+  PtrNoFila aux;
+  aux=fila->fim;
+  return(aux->x);
+}//fimFila
 
 int main(){
   FilaDinamica fila;
@@ -115,12 +117,15 @@ int main(){
 
   y = desenfileira(&fila);
     imprimeFila(&fila);
+  printf("Tamanho da fila: %d\n", tamanhoFila(&fila));
 
-  enfileira(&fila, 5);
+  enfileira(&fila, 34);
     imprimeFila(&fila);
 
-  //  printf("Objeto no inicio: %d\n", inicioFila(&fila));
-    //printf("Objeto no fim: %d\n", fimFila(&fila));
+  printf("Tamanho da fila: %d\n", tamanhoFila(&fila));
+
+  printf("Objeto no inicio: %d\n", inicioFila(&fila));
+  printf("Objeto no fim: %d\n", fimFila(&fila));
 
   return 0;
 }
