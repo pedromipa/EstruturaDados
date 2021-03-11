@@ -33,21 +33,13 @@ bool estaCheia(FilaEstatica *fila){
 
 // Calcular posição seguindo o buffer circular
 int incrementaIndice(int i){
-  int novaPos;
-  if (i == MAXTAM-1){
-    novaPos = 0;
-  }else{
-    novaPos = i++;
-  }
-
-  return(novaPos);
+  return((i+1)%MAXTAM);
 }//incrementaIndice
 
 // Inserção de elementos na fila
-void enfileira(FilaEstatica *fila, Objeto *x){
+void enfileira(FilaEstatica *fila, int x){
   if (!estaCheia(fila)){
     // incrementar o fim
-    fila->fim++;
     fila->fim = incrementaIndice(fila->fim);
     // novo elemento
     fila->array[fila->fim].chave = x;
@@ -70,7 +62,7 @@ void imprimeFila(FilaEstatica *fila){
 
   for (int i = 0; i < n; i++) {
     int indice = (fila->inicio+i) %MAXTAM;
-    printf("%d ", fila->array[indice]);
+    printf("%d ", fila->array[indice].chave);
   }
 
   printf("}\n");
@@ -92,24 +84,39 @@ int desenfileira(FilaEstatica *fila){
   return(temp);
 }//desenfileira
 
-Objeto inicioFila(FilaEstatica *fila){
-
+int inicioFila(FilaEstatica *fila){
+  return(fila->array[fila->inicio].chave);
 }//inicioFila
 
-Objeto fimFila(FilaEstatica *fila){
+int fimFila(FilaEstatica *fila){
+  return(fila->array[fila->fim].chave);
 
 }//fimFila
 
 int main(){
   FilaEstatica fila;
   Objeto x;
+  int y;
 
   iniciaFila(&fila);
+    imprimeFila(&fila);
+
+  enfileira(&fila, 10);
+  enfileira(&fila, 230);
+  enfileira(&fila, 123);
+  enfileira(&fila, 1);
+  enfileira(&fila, 5);
+
   imprimeFila(&fila);
 
-  x.chave = 13;
-  enfileira(&fila, &x);
-  imprimeFila(&fila);
+  y = desenfileira(&fila);
+    imprimeFila(&fila);
+
+  enfileira(&fila, 5);
+    imprimeFila(&fila);
+
+    printf("Objeto no inicio: %d\n", inicioFila(&fila));
+    printf("Objeto no fim: %d\n", fimFila(&fila));
 
   return 0;
 }
