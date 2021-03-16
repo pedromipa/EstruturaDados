@@ -9,7 +9,7 @@ typedef struct  {
 typedef struct NoLista *PtrNoLista;
 
 typedef struct NoLista {
-    Item elemento;
+    int chave;
     PtrNoLista proximo;
 } NoLista;
 
@@ -18,55 +18,91 @@ typedef struct {
     int tamanho;
 } Lista;
 
-void iniciaLista(Lista *list){
+void iniciaLista(Lista *lista){
+  lista->primeiro = NULL;
+  lista->tamanho = 0;
 
 }
 
-void inserir(Lista *list, Objeto x){
+bool estaVazia(Lista *lista){
+    return(lista->tamanho=0);
+}
+
+int tamanhoLista(Lista *lista){
+    return(lista->tamanho);
+}
+
+void inserir(Lista *lista, int x){
+  if(estaVazia(lista)){
+    PtrNoLista novo;
+    //
+    novo = (PtrNoLista)malloc(sizeof( NoLista));
+    //
+    novo->chave = x;
+    //
+    novo->proximo = NULL;
+    //
+    lista->primeiro = novo;
+    //
+
+  }else{
+    PtrNoLista aux;
+
+    aux = lista->primeiro
+    while (aux->proximo!=NULL && elemento > aux->proximo->chave) {
+      aux = aux->proximo;
+    }
+  }//if else
+
+  lista->tamanho = lista->tamanho + 1;
+
+}//void inserir
+
+void imprimirLista(Lista *lista){
+  printf("Lista = {");
+  PtrNoLista percorre;
+
+  for(percorre = lista->primeiro; percorre != NULL; percorre = percorre->proximo) {
+      printf("%d ", percorre->chave);
+    }
+
+  printf("}\n");
 
 }
 
-void imprimirLista(Lista *list){
+void destruirLista(Lista *lista){
 
 }
 
-void destruirLista(Lista *list){
+
+bool pesquisar(Lista *lista, int key){
 
 }
 
-bool estaVazia(Lista *list){
+
+void removeElemento(Lista *lista, int chave, Objeto *item){
 
 }
 
-bool pesquisar(Lista *list, int key){
+void removePrimeiro(Lista *lista, Objeto *item){
 
 }
 
-int tamanhoLista(Lista *list){
+void removeUltimo(Lista *lista, Objeto *item){
 
 }
 
-void removeElemento(Lista *list, int chave, Objeto *item){
+Objeto primeiro(Lista *lista){
 
 }
 
-void removePrimeiro(Lista *list, Objeto *item){
-
-}
-
-void removeUltimo(Lista *list, Objeto *item){
-
-}
-
-Objeto primeiro(Lista *list){
-
-}
-
-Objeto ultimo(Lista *list){
+Objeto ultimo(Lista *lista){
 
 }
 
 int main() {
+  Lista lista;
+  iniciaLista(&lista);
 
   return 0;
 }
