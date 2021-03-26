@@ -160,17 +160,17 @@ bool pesquisaListaDinamica2(ListaDinamica *lista, int consulta) {
 //------------------------------------------
 
 ListaDinamica* constroi(int n, int* v){
-//  ListaDinamica lista1;
+  ListaDinamica* lista;
   int x;
-  iniciaListaDinamica(&constroi);
+
+  iniciaListaDinamica(lista);
 
   for (int i = 0; i < n; i++) {
-    x = v[n];
-    inserirListaDinamica(&constroi, x);
+    inserirListaDinamica(lista, v[i]);
   }
 
-  imprimirListaDinamica(&constroi);
-  return(constroi);
+  imprimirListaDinamica(lista);
+  return(lista);
 }
 
 
@@ -178,10 +178,11 @@ ListaDinamica* constroi(int n, int* v){
 
 int main(int argc, const char * argv[]) {
 
-  int v[5];
-  v[5] = {1,2,3,4,5};
+  int v[5] = {1,2,3,4,5};
 
-  constroi(5,&v);
+  ListaDinamica* lista;
+
+  lista = constroi(5,v);
 
   return 0;
 }
