@@ -104,19 +104,23 @@ void inverteFilas(FilaDinamica *F1, FilaDinamica *F2) {
   eleF1 = tamanhoFila(F1);
   eleF2 = tamanhoFila(F2);
 
+imprimeFila(F1);
+imprimeFila(F2);
   //passando os elementos de uma fila para outra
-  /* desenfileiramos a fila 2 de acordo com o seu tamanho */
+  /* desenfileirar a fila 2 de acordo com o seu tamanho */
   for (int i = 0; i < eleF2; i++) {
     enfileira(F1, desenfileira(F2));
   }
 
-  /* desenfileiramos a fila 1 de acordo com o seu tamanho, sobrando os elementos da fila 2 nela */
+  /* desenfileirar a fila 1 de acordo com o seu tamanho, sobrando os elementos da fila 2 nela */
   for (int i = 0; i < eleF1; i++) {
     enfileira(F2, desenfileira(F1));
   }
 
-}
+imprimeFila(F1);
+imprimeFila(F2);
 
+}
 
 int main(){
   FilaDinamica F1;
