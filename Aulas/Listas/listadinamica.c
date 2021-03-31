@@ -30,7 +30,7 @@ int tamanhoLista(Lista *lista){
 }
 
 void inserir(Lista *lista, int x){
-  
+
     //criaçao e alocação do ponteiro novo
     PtrNoLista novo;
     novo = (PtrNoLista)malloc(sizeof( NoLista));
@@ -70,36 +70,50 @@ void imprimirLista(Lista *lista){
   printf("}\n");
 
 }
-//
-// void destruirLista(Lista *lista){
-//
-// }
-//
-//
-// bool pesquisar(Lista *lista, int key){
-//
-// }
 
-//
-// void removeElemento(Lista *lista, int chave, Objeto *item){
-//
-// }
-//
-// void removePrimeiro(Lista *lista, Objeto *item){
-//
-// }
-//
-// void removeUltimo(Lista *lista, Objeto *item){
-//
-// }
-//
-// Objeto primeiro(Lista *lista){
-//
-// }
-//
-// Objeto ultimo(Lista *lista){
-//
-// }
+ bool pesquisar(Lista *lista, int key){
+   if(estaVazia(lista)){
+     return false;
+   }
+
+   PtrNoLista percorre = lista->primeiro;
+   while(percorre != NULL && key > percorre->chave) {
+     percorre = percorre->proximo;
+   }
+
+   printf("CONSULTA: %d\n", percorre->chave);
+   if(percorre == NULL || percorre->chave > key) {
+     return false;
+   }
+
+   // 3
+   return true;
+}
+
+bool removeElemento(Lista *lista, int x){
+  PtrNoLista aux;
+  PtrNoLista anterior = NULL;
+
+  if(estaVazia(lista) || x < lista->primeiro->chave){
+    return false;
+  }else{
+      aux = lista->primeiro;
+      while (aux!=NULL && x != aux->chave) {
+        anterior = aux;
+        aux = aux->proximo;
+      }
+      if (anterior==NULL){
+        lista->primeiro=aux->proximo;
+      }else{
+      anterior->proximo = aux->proximo;
+      }
+
+    lista->tamanho--;
+    return true;
+    free(aux);
+  }
+  return false;
+}
 
 int main() {
   Lista lista;
@@ -116,19 +130,14 @@ int main() {
 
 
 
-  // //testar elemento que existe
-  // if(pesquisaListaDinamica2(&listinha, 13)) {
-  //   printf("Achou miseravi \n");
-  // } else {
-  //   printf("Try again\n");
-  // }
-  //
-  // if(pesquisaListaDinamica2(&listinha, 87)) {
-  //   printf("Achou miseravi \n");
-  // } else {
-  //   printf("Try again \n");
-  // }
-  //
+  if(pesquisar(&lista, 20)) {
+     printf("Esta na lista \n");
+  } else {
+     printf("Try again\n");
+  }
+
+  removeElemento(&lista,555);
+  imprimirLista(&lista);
 
   return 0;
 }
