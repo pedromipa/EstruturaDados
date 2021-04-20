@@ -36,7 +36,7 @@ void impressaoPosOrdem(PtrNoArvore *tree){
 }
 
 bool insereArvore(PtrNoArvore *tree, int x){
-  //caso 1
+  //caso 1: encontrou o ponto de inserção
   if(*tree == NULL){
 
     //novo nó
@@ -45,7 +45,7 @@ bool insereArvore(PtrNoArvore *tree, int x){
     // filho da direita e filho da esquerda = NULL
     (*tree)->filhoDireita  = NULL;
     (*tree)->filhoEsquerda = NULL;
-
+    //atribuindo o valor do elemento
     (*tree)->chave = x;
     return true;
   }
@@ -87,18 +87,89 @@ bool estaVazia(PtrNoArvore *tree){
   return (*tree == NULL);
 }
 
+// PtrArvore maximo(PtrNoArvore *tree){
+//
+// }
+
+PtrNoArvore getMaxAux(PtrNoArvore *node){
+  PtrNoArvore ret;
+  // criterio de parada da recursao:
+  // se filho direita do node == NULL
+  // eu achei o maior elemento
+  if((*node)->filhoDireita == NULL) {
+    ret = (*node);
+    // ajuste para remocao funcionar
+    // remover o elemento da sub-arvore de node
+    (*node) = (*node)->filhoEsquerda;
+    return(ret);
+  }
+  return(getMaxAux(&(*node)->filhoDireita));
+} //usado na remoção
+
+bool removeItem(PtrNoArvore *node, int x){
+
+  // se node == NULL, nao tem quem remover
+  if((*node) == NULL) {
+    printf("Warning: elemento %d não existe na árvore\n", x);
+    return(false);
+  }
+
+  // Achou quem quer remover
+  if((*node)->chave == x) {
+
+    //variavel para desalocar memoria
+    PtrNoArvore tmp = (*node);
+
+    // caso 1: sub-arvore esquerda do node é nula (direita nao)
+    if((*node)->filhoEsquerda == NULL && (*node)->filhoDireita !=NULL) {
+      (*node) = (*node)->filhoDireita;
+    }
+
+    // caso 2: sub-arvore direita do node é nula (esquerda nao)
+    else if((*node)->filhoEsquerda != NULL && (*node)->filhoDireita == NULL) {
+      (*node) = (*node)->filhoEsquerda;
+    }
+    // caso 3: no folha (direita como esquerda sao nulos)
+    else if((*node)->filhoDireita == NULL && (*node)->filhoEsquerda == NULL) {
+      (*node) = NULL;
+    }
+    // caso 4: direita e esquerda nao sao nulos
+    else {
+
+      tmp = getMaxAux(&(*node)->filhoEsquerda);
+      (*node)->chave = tmp->chave;
+    }
+
+    printf("Elemento %d removido com sucesso\n", x);
+    free(tmp);
+    return(true);
+  }
+
+  // passos de recursao
+  if((*node)->chave > x) {
+    return (removeItem(&(*node)->filhoEsquerda, x));
+  } else {
+    return(removeItem(&(*node)->filhoDireita, x));
+  }
+
+}//removeitem
+
+void destroiArvore(PtrNoArvore *node){
+  //percorrer a arvore e desalocar memoria de tras p/ frente
+  if ((*node)!=NULL){
+    destroiArvore(&(*node)->filhoEsquerda);
+    destroiArvore(&(*node)->filhoDireita);
+    free(*node);
+    (*node)=NULL;
+  }
+}
+
 // int numeroNosArvore(PtrNoArvore *tree){
 // }
 // int alturaArvore(PtrNoArvore *tree){
 // }
 //void EmOrdem(PtrNoArvore *tree){
   //}
-//void destroiArvore(PtrNoArvore *tree){
-//}
-// bool removeItem(PtrNoArvore *tree, int key){
-// }
-// PtrArvore maximo(PtrNoArvore *tree){
-// }
 // PtrArvore maximoIterativo(PtrNoArvore *tree){
 // }
 // PtrArvore minimo(PtrNoArvore *tree){
@@ -106,8 +177,6 @@ bool estaVazia(PtrNoArvore *tree){
 // PtrArvore minimoIterativo(PtrNoArvore *tree){
 //   }
 // PtrArvore getMinAux(PtrNoArvore *tree){
-// } //usado na remoção
-// PtrArvore getMaxAux(PtrNoArvore *tree){
 // } //usado na remoção
 
 int main(){
@@ -156,6 +225,8 @@ int main(){
   printf("Pre-ordem ={");
   impressaoPosOrdem(&raiz);
   printf("}\n");
+
+  removeItem(&raiz,-3);
 
 //  // esta vazia!
 //  if(estaVaziaArvore(&raiz)) {
