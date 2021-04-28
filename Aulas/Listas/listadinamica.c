@@ -121,6 +121,8 @@ int main() {
 
   inserir(&lista, 555);
   inserir(&lista, 0);
+  inserir(&lista, 0);
+  inserir(&lista, 0);
   inserir(&lista, 20);
   inserir(&lista, 7000);
 
