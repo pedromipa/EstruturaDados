@@ -353,11 +353,17 @@ int main(){
 
   iniciaArvoreAVL(&raiz);
 
-  inserirAVL(&raiz, 823);
-  inserirAVL(&raiz, 81);
-  inserirAVL(&raiz, 82);
+  inserirAVL(&raiz, 20);
+  inserirAVL(&raiz, 15);
+  inserirAVL(&raiz, 25);
+  inserirAVL(&raiz, 10);
+  inserirAVL(&raiz, 30);
+  inserirAVL(&raiz, 24);
+  inserirAVL(&raiz, 17);
+  inserirAVL(&raiz, 12);
+  inserirAVL(&raiz, 5);
+  inserirAVL(&raiz, 3);
 
-  preOrdem(&raiz);
 
   //destruirArvoreAVL(&raiz);
   return 0;
