@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define MAXTAM 10
+
 typedef struct {
   int vertices;
   int **matrix;
@@ -128,6 +130,11 @@ int* getAdjacents(GraphMatrix *graph, int v, int* cont) {
   return(array);
 }
 
+// void bfs(GraphMatrix *graph){
+//   for (int i = 0; i < n; i++) {
+//     /* code */
+//   }
+//}
 //---------------------------------------------------------
 //---------------------------------------------------------
 
